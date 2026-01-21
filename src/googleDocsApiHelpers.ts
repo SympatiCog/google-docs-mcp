@@ -607,7 +607,7 @@ export async function uploadImageToDrive(
  * @param title - Optional title for the new tab
  * @returns Promise with batch update response
  */
-export async function addTab(docs: Docs, documentId: string, title?: string): Promise<docs_v1.Schema$BatchUpdateDocumentResponse> {
+export async function addDocumentTab(docs: Docs, documentId: string, title?: string): Promise<docs_v1.Schema$BatchUpdateDocumentResponse> {
     const request: any = {
         addDocumentTab: {
             tabProperties: {

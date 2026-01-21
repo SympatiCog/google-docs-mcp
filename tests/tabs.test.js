@@ -1,10 +1,10 @@
 // tests/tabs.test.js
-import { addTab } from '../dist/googleDocsApiHelpers.js';
+import { addDocumentTab } from '../dist/googleDocsApiHelpers.js';
 import assert from 'node:assert';
 import { describe, it, mock } from 'node:test';
 
 describe('Tab Management', () => {
-    describe('addTab', () => {
+    describe('addDocumentTab', () => {
         it('should create a request to add a tab with default title', async () => {
             const mockDocs = {
                 documents: {
@@ -17,13 +17,12 @@ describe('Tab Management', () => {
                                     }
                                 }
                             ]
-
                         }
                     }))
                 }
             };
 
-            const result = await addTab(mockDocs, 'doc123');
+            const result = await addDocumentTab(mockDocs, 'doc123');
 
             // Verify response structure
             assert.strictEqual(result.replies[0].addDocumentTab.tabId, 'new-tab-id');
@@ -46,7 +45,7 @@ describe('Tab Management', () => {
                 }
             };
 
-            await addTab(mockDocs, 'doc123', 'My Custom Tab');
+            await addDocumentTab(mockDocs, 'doc123', 'My Custom Tab');
 
             const callArgs = mockDocs.documents.batchUpdate.mock.calls[0].arguments[0];
             const request = callArgs.requestBody.requests[0];

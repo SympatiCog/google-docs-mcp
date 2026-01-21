@@ -512,7 +512,7 @@ server.addTool({
 });
 
 server.addTool({
-  name: 'createTab',
+  name: 'createDocumentTab',
   description: 'Creates a new tab in the Google Document.',
   parameters: DocumentIdParameter.extend({
     title: z.string().optional().describe('The title for the new tab. Defaults to "New Tab".')
@@ -521,7 +521,7 @@ server.addTool({
     const docs = await getDocsClient();
     log.info(`Creating new tab in doc ${args.documentId} with title: ${args.title || 'New Tab'}`);
     try {
-      const response = await GDocsHelpers.addTab(docs, args.documentId, args.title) as any;
+      const response = await GDocsHelpers.addDocumentTab(docs, args.documentId, args.title) as any;
       const reply = response.replies?.[0]?.addDocumentTab;
       const tabId = reply?.tabId ?? 'unknown';
       log.info(`Successfully created tab with ID: ${tabId}`);
