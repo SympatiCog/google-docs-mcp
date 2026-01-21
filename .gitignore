@@ -11,3 +11,6 @@ token.json
 
 # Environment variables (if you use a .env file later)
 .env* 
+
+# MacOS stuff
+.DS_Store*
